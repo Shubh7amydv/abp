@@ -21,6 +21,16 @@ How to setup this project---
     "dialect": "mysql"
     }
     }
-
-
  / 
+
+once you have done the above config go to src oflder from terminal and do 
+`npx sequelize create db:create`
+
+
+# DB DESIGN
+  - Airplane
+  - Flight
+  - city
+  - Airport
+
+   -
