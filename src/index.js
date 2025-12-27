@@ -1,7 +1,6 @@
 const express=require('express');
 const bodyParser=require('body-parser');
-
-
+const { City }= require('./models/index');
 const { port } =require ('./config/serverconfig');
 
 const setupAndStartServer= async () =>{
@@ -11,7 +10,10 @@ const setupAndStartServer= async () =>{
     app.use(bodyParser.urlencoded({extended:true}));
     app.listen(port, ()=>{
         console.log(`Server started at ${port}`);
+        console.log(City); // city is case sensitive
+       
     });
 }
-
+ 
 setupAndStartServer();
+
