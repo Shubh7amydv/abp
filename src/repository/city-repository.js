@@ -2,7 +2,7 @@ const { City }= require('../models/index');
 
 
 
-class CityRepository {          // class is blurprint  and this class groups all DB-related City operations
+class CityRepository {  // class is blurprint  and this class groups all DB-related City operations
 
       async createCity ({name}) {
         try {
