@@ -1,6 +1,6 @@
 const { CityRepository }=require('../repository/index')
 
-class cityServices {
+class CityService{
 
     // constructor 
     constructor (){
@@ -65,5 +65,4 @@ class cityServices {
 }
 
 
-
-module.exports=cityServices;
+module.exports=CityService;
