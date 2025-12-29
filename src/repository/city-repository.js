@@ -34,27 +34,32 @@ class CityRepository {  // class is blurprint  and this class groups all DB-rela
 
 
 
-      async updateCity () {
-        try{
-            const city= await City.update(
-              {data},
-              { where :{
-                id: cityId
-                }
-              });
+    async updateCity(cityId, data) { // {name: "Prayagraj"}
+        try {
+            // The below approach also works but will not return updated object
+            // if we are using Pg then returning: true can be used, else not
+            // const city = await City.update(data, {
+            //     where: {
+            //         id: cityId
+            //     },
+            //      
+            // });
+            // for getting updated data in mysql we use the below approach
+            const city = await City.findByPk(cityId);
+            city.name = data.name;
+            await city.save();
             return city;
+        } catch (error) {
+            console.log("Something went wrong in the repository layer");
+            throw {error};
         }
-        catch(error){
-          console.log("some error occured");
-          throw(error);
-        }
-      };
+    }
 
 
 
       async getCity (cityId) {
         try {
-          const city=await City.findByPK(cityId);
+          const city=await City.findByPk(cityId);
           return city;
         }
         catch(error){

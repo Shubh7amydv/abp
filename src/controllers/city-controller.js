@@ -1,6 +1,6 @@
 const { CityService } = require('../services/index'); // importing the cityservice 
 
-const cityService=new CityService(); // making it into a object to use it 
+const cityService= new CityService(); // making it into a object to use it 
 
 const create = async (req,res) => {
     try {
