@@ -1,5 +1,7 @@
 const { City }= require('../models/index');
 
+const { Op } = require('sequelize');
+
 
 
 class CityRepository {  // class is blurprint  and this class groups all DB-related City operations
@@ -34,7 +36,7 @@ class CityRepository {  // class is blurprint  and this class groups all DB-rela
 
 
 
-    async updateCity(cityId, data) { // {name: "Prayagraj"}
+      async updateCity(cityId, data) { // {name: "Prayagraj"}
         try {
             // The below approach also works but will not return updated object
             // if we are using Pg then returning: true can be used, else not
@@ -53,7 +55,7 @@ class CityRepository {  // class is blurprint  and this class groups all DB-rela
             console.log("Something went wrong in the repository layer");
             throw {error};
         }
-    }
+      };
 
 
 
@@ -67,6 +69,30 @@ class CityRepository {  // class is blurprint  and this class groups all DB-rela
           throw(error);
         }
       };
+
+      async getAllCities(filter){
+        try {
+          if(filter.name){
+            const cities=await City.findAll({
+              where: {
+                name :{
+                  [Op.startsWith] :filter.name
+                }
+              }
+            });
+          return cities;
+
+          }
+          const cities=await City.findAll();
+          return cities;
+        }
+        catch(error){
+          console.log("some error occured in repository layer ");
+          throw(error);
+        }
+
+      };
+      
   }
 
 

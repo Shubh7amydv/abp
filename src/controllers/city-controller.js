@@ -24,9 +24,7 @@ const create = async (req,res) => {
 }
 
 
-
 // DELETE -> /city/:id
-
 const destroy =async (req,res) =>{
     try {
         const response= await cityService.deleteCity(req.params.id);
@@ -49,7 +47,6 @@ const destroy =async (req,res) =>{
 }
 
 // For updating you will get url with PATCH -> /city/:id -> req.body
-
 const update = async (req,res) => {
     try {
         const response= await cityService.updateCity(req.params.id,req.body);
@@ -73,10 +70,10 @@ const update = async (req,res) => {
 
 
 // Get desired city.  -> GET -> /city/:id. 
-
 const get= async (req,res) => {
-   try{ const city= await cityService.getCity(req.params.id);
-        return res.status(201).json({
+   try{ 
+      const city= await cityService.getCity(req.params.id);
+      return res.status(201).json({
             data:city,
             success:true,
             message:"Succesfully find the city",
@@ -95,6 +92,30 @@ const get= async (req,res) => {
     }
 }
 
+// To get all the cities in database
+const getAll= async (req,res) =>{
+    try {
+        const cities=await cityService.getAllCities(req.query);
+        return res.status(200).json({
+            data:cities,
+            success:true,
+            message:"Succesfully fetched all the city",
+            err:{}
+        })
+
+        
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            data:{},
+            success:false,
+            message:"cannot get the city",
+            err:error
+        });
+        
+    }
+}
+
 
 
 
@@ -102,5 +123,6 @@ module.exports = {
     create,
     destroy,
     get,
-    update
+    update,
+    getAll
 }
