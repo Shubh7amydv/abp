@@ -14,32 +14,48 @@ module.exports = {
     */
 
 
-    await queryInterface.bulkInsert('Airports', [
+     await queryInterface.bulkInsert('Airplanes', [
+       
       {
-        name:'Kempegowda International Airport',
-        cityId:'20',
+        modelNumber :'Boeing 737',
+        capacity:300,
         createdAt: new Date(),
         updatedAt: new Date()
       },
+
       {
-        name:'Menagaluru International Airport',
-        cityId:'20',
+        modelNumber :'Airbus A320',
+        capacity:350,
         createdAt: new Date(),
         updatedAt: new Date()
       },
+
       {
-        name:'Belagavi  Airport',
-        cityId:'20',
+        modelNumber :'Boeing 777',
+        capacity:400,
         createdAt: new Date(),
         updatedAt: new Date()
       },
+
       {
-        name:'Indira gandhi International Airport',
-        cityId:'1',
+        modelNumber :'Boeing 747',
+        capacity:320,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+
+
+      {
+        modelNumber :'Airbus A320',
+        capacity:150,
         createdAt: new Date(),
         updatedAt: new Date()
       }
-    ],{});
+      
+
+     ], {});
+
+
   },
 
   async down (queryInterface, Sequelize) {
@@ -51,6 +67,6 @@ module.exports = {
      */
 
 
-    await queryInterface.bulkDelete('Airports', null ,{});
+    await queryInterface.bulkDelete('Airplanes', null ,{});
   }
 };
