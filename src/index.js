@@ -20,9 +20,9 @@ const setupAndStartServer= async () =>{
         if(process.env.SYNC_DB){
             db.sequelize.sync({alter : true});
         }
-        await Airplane.create({
-            modelNumber:'kanatara te ri te '
-        })
+        // await Airplane.create({
+        //     modelNumber:'kanatara te ri te '
+        // })
 
 
     });
