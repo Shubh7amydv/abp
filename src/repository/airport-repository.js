@@ -14,6 +14,18 @@ class AirportRepository {
         }
     };
 
+
+    async getAirport(data) {
+        try {
+            const airport= await Airport.FindbyPk(data);
+            return airport;
+        } catch (error) {
+            console.log("something went wrong in repository layer");
+            throw(error);
+        }
+    };
+
+
 }
 
 module.exports=AirportRepository;

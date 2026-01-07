@@ -59,9 +59,9 @@ class CityRepository {  // class is blurprint  and this class groups all DB-rela
 
 
 
-      async getCity (cityId) {
+      async getCity (data) {
         try {
-          const city=await City.findByPk(cityId);
+          const city=await City.findByPk(data);
           return city;
         }
         catch(error){
