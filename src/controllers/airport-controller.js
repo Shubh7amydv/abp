@@ -28,37 +28,32 @@ const create= async (req,res) =>{
     }
 }
 
-
-const get= async (req,res) =>{
-       try {
-        
-           const airport= await AirportService.getAirport(req.params.id);
-           return airport;
+const get=async (req,res) =>{
+    try {
+        const airport=await AirportService.getAirport(req.params.id);
         return res.status(201).json({
             data:airport,
             success:true,
-            message:"successfully created a airport ",
+            message:"created the airport",
             err:{}
         });
         
-    }
-    
-    catch (error){
-        console.log(error);
+    } catch (error) {
+        console.error("CREATE AIRPORT ERROR:", error);
+
         return res.status(500).json({
             data:{},
             success:false,
-            message:"cannot get the city",
+            message:"Cannot get a airport ",
             err:error
         });
-    } 
-    
-    
+    }
 }
-
-
 
 module.exports = {
     create,
     get
 }
+
+
+

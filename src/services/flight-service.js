@@ -1,4 +1,6 @@
-const { FlightRepository,AirplaneRepository }=require('../repository/flight-repository')
+const { FlightRepository,AirplaneRepository }=require('../repository/index')
+
+const { compareTime }=require('../utils/helper')
 
 class flightservice {
 
@@ -7,18 +9,29 @@ class flightservice {
         this.FlightRepository= new FlightRepository();
     }
 
-    async createFlight (data) {
-        try {
-            const airplane= await this.airplaneRepository.getAirplane(data.airplaneId);
-            const flight= await this.FlightRepository.createFlight({...data, totalSeats:airplane.capacity});
-            return flight;
+    async createFlight(data) {
+    try {
 
-            
-        } catch (error) {
-            console.log("something went wrong in service layer");
-            throw(error);
-        }
-    };
+    if(!compareTime(data.arrivalTime,data.departureTime)){
+        throw { error : 'give valid inputs'};
+    }
+    
+
+    const airplane = await this.airplaneRepository.getAirplane(data.airplaneId);
+
+
+    const flight = await this.FlightRepository.createFlight({
+      ...data,
+      totalSeats: airplane.capacity
+    });
+
+    return flight;
+
+  } catch (error) {
+    console.log("something went wrong in service layer");
+    throw error;
+  }
+}
 
     async getFlightData(){
         // TODO

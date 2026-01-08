@@ -14,16 +14,15 @@ class AirportRepository {
         }
     };
 
-
     async getAirport(data) {
         try {
-            const airport= await Airport.FindbyPk(data);
+            const airport=await Airport.findByPk(data);
             return airport;
         } catch (error) {
-            console.log("something went wrong in repository layer");
-            throw(error);
+            console.log("some error oocured at repo");
         }
-    };
+    }
+   
 
 
 }
