@@ -10,31 +10,33 @@ class flightservice {
     }
 
     async createFlight(data) {
-    try {
+        try {
 
-    if(!compareTime(data.arrivalTime,data.departureTime)){
-        throw { error : 'give valid inputs'};
-    }
-    
+            if(!compareTime(data.arrivalTime,data.departureTime)){
+                throw { error : 'give valid inputs'};
+            }
+            const airplane = await this.airplaneRepository.getAirplane(data.airplaneId);
 
-    const airplane = await this.airplaneRepository.getAirplane(data.airplaneId);
+            const flight = await this.FlightRepository.createFlight({...data,totalSeats: airplane.capacity});
 
-
-    const flight = await this.FlightRepository.createFlight({
-      ...data,
-      totalSeats: airplane.capacity
-    });
-
-    return flight;
-
-  } catch (error) {
-    console.log("something went wrong in service layer");
-    throw error;
-  }
+            return flight;
+        } 
+        catch (error) {
+            console.log("something went wrong in service layer");
+            throw error;
+        }
 }
 
-    async getFlightData(){
-        // TODO
+    async getFlight(data){
+       try {
+
+            const flight = await this.FlightRepository.getFlight(data);
+            return flight;
+        } 
+        catch (error) {
+            console.log("something went wrong in service layer");
+            throw error;
+        }
     }
 }
 

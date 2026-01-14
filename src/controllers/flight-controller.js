@@ -27,7 +27,32 @@ const create= async (req,res) =>{
         })
     }
 };
-const get=async(req,res)=> {};
+
+
+const get=async(req,res)=> {
+    try {
+
+       const flight=await FlightService.getFlight(req.params.id);
+       return res.status(201).json({
+            data:flight,
+            success:true,
+            message:"successfully got the airport ",
+            err:{}
+        });
+
+    
+        
+    } catch (error) {
+        console.log("REQ BODY:", req.body);
+        return res.status(500).json({
+            data:{},
+            success:false,
+            message:"Cannot get a flightt ",
+            err:error
+        })
+    }
+
+};
 
 module.exports={
     create,
