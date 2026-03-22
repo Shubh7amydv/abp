@@ -1,5 +1,4 @@
 const express=require("express");
-
 const router=express.Router();
 
 const v1apiroute=require('./v1/index'); // import v1apiroute object 

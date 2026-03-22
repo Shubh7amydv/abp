@@ -28,6 +28,23 @@ class FlightRepository {
         
     };
 
+
+    async updateFlight(flightId,data){
+        try{
+
+            await Flight.update(data,{
+                where:{
+                    id: flightId,
+                }
+            });
+        }
+
+        catch(error){
+            console.log("something went wrong in repo layer in updating");
+            throw error;
+        }
+    };
+
 }
 
 
